@@ -25,7 +25,7 @@ do
     project_name=yoloe_original_train_tp
     project_dir=${project_name}
     mkdir -p $project_dir
-    exp_name=${clip_weight_name}_${model}_${lr}_close2_ep30_exp
+    exp_name=${clip_weight_name}_${model}_${lr}_close2_ep30_prefix_exp
     exp_dir=${project_dir}/${exp_name}
     echo "Experiment directory: $exp_dir"
     mkdir -p $exp_dir

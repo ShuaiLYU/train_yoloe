@@ -3,11 +3,6 @@ workspace = os.path.dirname(os.path.dirname(os.path.abspath(ultralytics.__file__
 os.chdir(workspace)
 print("set workspace:", workspace)
 
-import wandb
-
-# Initialize your Weights & Biases environment
-wandb.login(key="c910caa131d65b2c0f314303f04a71b0ea7e89f5")
-
 
 
 from ultralytics import YOLOE

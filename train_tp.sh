@@ -23,7 +23,7 @@ do
 
 
     project_name=yoloe_original_train_tp
-    project_dir=${run_dir}/${project_name}
+    project_dir=${project_name}
     mkdir -p $project_dir
     exp_name=${clip_weight_name}_${model}_${lr}_close2_ep30_exp
     exp_dir=${project_dir}/${exp_name}
@@ -33,19 +33,19 @@ do
     echo "Log files: $log_files"
 
 
-    nohup python yoloe_tp/train_tp.py \
+    nohup python train_yoloe/train_tp.py \
         --model_version $model \
         --lr $lr \
         --epochs 30 \
         --close_mosaic 2 \
         --batch 128 \
         --device 0,1,2,3 \
-        --project $project_dir \
+        --project $project_name \
         --name $exp_name \
         --clip_weight_name $clip_weight_name \
         > $log_files 2>&1 &
 
-        tail -f -n 50 $log_files
+        cache "using the following command to check the log:\n tail -f -n 50 $log_files"
 done
 
 

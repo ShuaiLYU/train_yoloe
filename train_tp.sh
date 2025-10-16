@@ -18,12 +18,12 @@ do
 
     timestamp=$(date +%Y%m%d_%H%M%S)
 
-    run_dir="./runs"
+    run_dir="runs"
     run_dir=$(realpath $run_dir)
 
 
     project_name=yoloe_original_train_tp
-    project_dir=${project_name}
+    project_dir=${run_dir}/${project_name}
     mkdir -p $project_dir
     exp_name=${clip_weight_name}_${model}_${lr}_close2_ep30_exp
     exp_dir=${project_dir}/${exp_name}
@@ -40,7 +40,7 @@ do
         --close_mosaic 2 \
         --batch 128 \
         --device 0,1,2,3 \
-        --project $project_name \
+        --project $project_dir \
         --name $exp_name \
         --clip_weight_name $clip_weight_name \
         > $log_files 2>&1 &

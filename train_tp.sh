@@ -18,7 +18,7 @@ do
 
     timestamp=$(date +%Y%m%d_%H%M%S)
 
-    run_dir="./runs"
+    run_dir="runs"
     run_dir=$(realpath $run_dir)
 
 
@@ -40,7 +40,7 @@ do
         --close_mosaic 2 \
         --batch 128 \
         --device 0,1,2,3 \
-        --project $project_name \
+        --project $project_dir \
         --name $exp_name \
         --clip_weight_name $clip_weight_name \
         > $log_files 2>&1 &

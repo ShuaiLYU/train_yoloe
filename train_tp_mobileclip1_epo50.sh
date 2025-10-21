@@ -9,7 +9,7 @@ source ~/miniconda3/etc/profile.d/conda.sh
 conda activate clipenv
 
 
-clip_weight_name="mobileclip2:b" # mobileclip2b
+clip_weight_name="mobileclip:blt" # mobileclip2b
 
 
 for model in 11s
@@ -25,7 +25,7 @@ do
     project_name=yoloe_original_train_tp
     project_dir=${run_dir}/${project_name}
     mkdir -p $project_dir
-    exp_name=${clip_weight_name}_${model}_${lr}_close2_ep30_exp
+    exp_name=${clip_weight_name}_${model}_${lr}_close2_ep50_exp
     exp_dir=${project_dir}/${exp_name}
     echo "Experiment directory: $exp_dir"
     mkdir -p $exp_dir
@@ -36,7 +36,7 @@ do
     nohup python train_yoloe/train_tp.py \
         --model_version $model \
         --lr $lr \
-        --epochs 30 \
+        --epochs 50 \
         --close_mosaic 2 \
         --batch 128 \
         --device 0,1,2,3 \

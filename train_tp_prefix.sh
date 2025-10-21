@@ -9,7 +9,7 @@ source ~/miniconda3/etc/profile.d/conda.sh
 conda activate clipenv
 
 
-clip_weight_name="mobileclip2:b" # mobileclip2b
+clip_weight_name="mobileclip:blt" # mobileclip2b
 
 
 for model in 11s
@@ -23,7 +23,7 @@ do
 
 
     project_name=yoloe_original_train_tp
-    project_dir=${project_name}
+    project_dir=${run_dir}/${project_name}
     mkdir -p $project_dir
     exp_name=${clip_weight_name}_${model}_${lr}_close2_ep30_prefix_exp
     exp_dir=${project_dir}/${exp_name}

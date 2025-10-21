@@ -23,7 +23,7 @@ do
 
 
     project_name=yoloe_original_train_tp
-    project_dir=${project_name}
+    project_dir=${run_dir}/${project_name}
     mkdir -p $project_dir
     exp_name=${clip_weight_name}_${model}_${lr}_close2_ep30_prefix_gpu2_exp
     exp_dir=${project_dir}/${exp_name}

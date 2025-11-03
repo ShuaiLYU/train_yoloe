@@ -60,6 +60,9 @@ args = parser.parse_args()
 
 model = YOLOE("yoloe-{}.yaml".format(args.model_version))
 
+# load model=yolo26n-objv1.pt
+
+model=model.load("yolo26s-objv1.pt")
 
 model.train(
     data=data,
@@ -94,5 +97,6 @@ model.train(
     warmup_bias_lr=0.0,
     lr0=0.00125,
     lrf=0.500,
-    optimizer="MuSGD"
+    optimizer="MuSGD",
+
 )

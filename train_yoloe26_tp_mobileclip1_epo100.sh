@@ -12,42 +12,47 @@ conda activate clipenv
 
 
 
-for model in 26s; do
-    lr=0.002
-    epo=100
-    close_mosaic=5
-    batch_size=128
-    clip_weight_name="mobileclip:blt" # mobileclip2b
-    timestamp=$(date +%Y%m%d_%H%M%S)
-
-    run_dir="runs"
+# for model in 26s; do
 
 
-    project_name=yoloe26s_tp
-    project_dir=${run_dir}/${project_name}
-    mkdir -p $project_dir
-    exp_name=${clip_weight_name}_${model}_${lr}_close2_ep${epo}_bs${batch_size}_exp
-    exp_dir=${project_dir}/${exp_name}
-    echo "Experiment directory: $exp_dir"
-    mkdir -p $exp_dir
-    log_files="${exp_dir}-output.log"
-    echo "Log files: $log_files"
+model=26s
+lr=0.002
+epo=100
+close_mosaic=5
+batch_size=128
+clip_weight_name="mobileclip:blt" # mobileclip2b
+timestamp=$(date +%Y%m%d_%H%M%S)
 
-   
-    nohup python train_yoloe/train_yoloe26_tp.py \
-        --model_version $model \
-        --lr $lr \
-        --epochs $epo \
-        --close_mosaic $close_mosaic \
-        --batch $batch_size \
-        --device 0,1,2,3 \
-        --project $project_dir \
-        --name $exp_name \
-        --clip_weight_name $clip_weight_name \
-        > $log_files 2>&1 &
+run_dir="runs"
 
-        echo "using the following command to check the log:\n tail -f -n 50 $log_files"
-done
+ptw="none" 
+
+project_name=yoloe26s_tp
+project_dir=${run_dir}/${project_name}
+mkdir -p $project_dir
+exp_name=${clip_weight_name}_${model}_${lr}_bs${batch_size}_ptw${ptw}_exp
+exp_dir=${project_dir}/${exp_name}
+echo "Experiment directory: $exp_dir"
+mkdir -p $exp_dir
+log_files="${exp_dir}-output.log"
+timestamp=$(date +%Y%m%d_%H%M%S)
+log_files="./runs/$timestamp.log"
+echo "Log files: $log_files"
+
+
+nohup python train_yoloe/train_yoloe26_tp.py \
+    --model_version $model \
+    --lr $lr \
+    --epochs $epo \
+    --close_mosaic $close_mosaic \
+    --batch $batch_size \
+    --device 0,1,2,3 \
+    --project $project_dir \
+    --name $exp_name \
+    --clip_weight_name $clip_weight_name \
+    > $log_files 2>&1 &
+
+echo "using the following command to check the log:\n tail -f -n 50 $log_files"
 
 
 

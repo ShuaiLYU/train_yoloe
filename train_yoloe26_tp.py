@@ -62,7 +62,7 @@ model = YOLOE("yoloe-{}.yaml".format(args.model_version))
 
 # load model=yolo26n-objv1.pt
 
-model=model.load("yolo26s-objv1.pt")
+
 
 model.train(
     data=data,
@@ -81,22 +81,21 @@ model.train(
     project=args.project,
     name=args.name,
 
-    # optimizer="AdamW",
-    # lr0=args.lr, # for s/m, please set lr0=8e-3
+    # cache="disk",
+    # scale=0.9,
+    # copy_paste=0.15,
+    # mixup=0.05,
+    # dfl=6.0,
+    # o2m=0.1,
+    # warmup_epochs=1,
     # warmup_bias_lr=0.0,
-    # weight_decay=0.025,
-    # momentum=0.9,
+    # lr0=0.00125,
+    # lrf=0.500,
 
-    cache="disk",
-    scale=0.9,
-    copy_paste=0.15,
-    mixup=0.05,
-    dfl=6.0,
-    o2m=0.1,
-    warmup_epochs=1,
-    warmup_bias_lr=0.0,
-    lr0=0.00125,
-    lrf=0.500,
     optimizer="MuSGD",
+    lr0=args.lr, # for s/m, please set lr0=8e-3
+    warmup_bias_lr=0.0,
+    weight_decay=0.025,
+    momentum=0.9,
 
 )

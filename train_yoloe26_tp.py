@@ -61,7 +61,7 @@ args = parser.parse_args()
 model = YOLOE("yoloe-{}.yaml".format(args.model_version))
 
 # load model=yolo26n-objv1.pt
-
+# nohup yolo detect train model=yolo26s-objv1.pt data=coco.yaml epochs=120 batch=128 project=YOLO26 cache=disk scale=0.9 copy_paste=0.15 mixup=0.05 dfl=6.0 o2m=0.1 warmup_epochs=1 warmup_bias_lr=0.0 momentum=0.9 weight_decay=0.0007 lr0=0.00125 lrf=0.500 name=yolo26s close_mosaic=5 device=1 >s1.out 2>&1 &
 
 
 model.train(
@@ -81,21 +81,23 @@ model.train(
     project=args.project,
     name=args.name,
 
-    # cache="disk",
-    # scale=0.9,
-    # copy_paste=0.15,
-    # mixup=0.05,
-    # dfl=6.0,
-    # o2m=0.1,
-    # warmup_epochs=1,
-    # warmup_bias_lr=0.0,
-    # lr0=0.00125,
-    # lrf=0.500,
-
-    optimizer="MuSGD",
-    lr0=args.lr, # for s/m, please set lr0=8e-3
+    cache="disk",
+    scale=0.9, # sensitive.  [0.1,  1.9] 
+    copy_paste=0.15, 
+    mixup=0.05,
+    dfl=6.0,
+    o2m=0.1,
+    warmup_epochs=1,
     warmup_bias_lr=0.0,
-    weight_decay=0.025,
+    lr0=0.00125,
+    lrf=0.500,
+    optimizer="MuSGD",
     momentum=0.9,
+    weight_decay=0.0007,
+
+    # lr0=args.lr, # for s/m, please set lr0=8e-3
+    # warmup_bias_lr=0.0,
+    # weight_decay=0.025,
+    # momentum=0.9,
 
 )

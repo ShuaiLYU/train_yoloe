@@ -28,6 +28,7 @@ data = dict(
     val=dict(yolo_data=["./lvis.yaml"]),
 )
 
+# data=dict(train=dict(yolo_data=["coco128.yaml"]),val=dict(yolo_data=["coco128.yaml"]))
 
 
 # model = YOLOE("/root/ultra_louis_work/yoloe/yoloe-v8s-seg-det.pt")
@@ -88,4 +89,6 @@ model.train(
     device=device,
     freeze=freeze,
     single_cls=single_cls,
+    project=project,
+    name=name
 )

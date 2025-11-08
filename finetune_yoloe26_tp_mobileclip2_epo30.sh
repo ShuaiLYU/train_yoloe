@@ -20,7 +20,7 @@ lr=0.002
 epo=30
 close_mosaic=5
 batch_size=128
-clip_weight_name="mobileclip:blt" # mobileclip2b
+clip_weight_name="mobileclip2:b" # mobileclip2b
 timestamp=$(date +%Y%m%d_%H%M%S)
 
 run_dir="runs"
@@ -30,7 +30,7 @@ ptw="object365v1"
 project_name=yoloe26s_tp
 project_dir=${run_dir}/${project_name}
 mkdir -p $project_dir
-exp_name=${clip_weight_name}_${model}_bs${batch_size}_ptw${ptw}_cls${close_mosaic}_1108exp
+exp_name=${clip_weight_name}_${model}_bs${batch_size}_ptw${ptw}_cls${close_mosaic}_exp
 exp_dir=${project_dir}/${exp_name}
 echo "Experiment directory: $exp_dir"
 mkdir -p $exp_dir

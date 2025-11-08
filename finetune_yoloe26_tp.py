@@ -71,7 +71,7 @@ model.train(
     workers=4,
     max_det=1000,
     trainer=YOLOETrainerFromScratch,  # use YOLOEVPTrainer if converted to detection model
-    # clip_weight_name=args.clip_weight_name,
+    clip_weight_name=args.clip_weight_name,
     device=args.device,
     save_period=5,
     val=args.val,

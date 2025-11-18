@@ -52,7 +52,11 @@ parser.add_argument("--device", type=str, default="0,1,2,3")
 # val
 parser.add_argument("--val", type=bool, default=True)
 parser.add_argument("--name", type=str, default="yoloe_vp")
-parser.add_argument("--clip_weight_name", type=str, default="mobileclip:blt")  # mobileclip2b
+parser.add_argument("--clip_weight_name", type=str, default="mobileclip:blt") 
+parser.add_argument("--scale", type=float, default=0.9)
+parser.add_argument("--lrf", type=float, default=0.5)
+
+ # mobileclip2b
 #
 args = parser.parse_args()
 
@@ -79,7 +83,7 @@ model.train(
     name=args.name,
 
     cache="disk",
-    scale=0.9, # sensitive.  [0.1,  1.9] 
+    scale=args.scale, # sensitive.  [0.1,  1.9] 
     copy_paste=0.15, 
     mixup=0.05,
     dfl=6.0,
@@ -87,7 +91,7 @@ model.train(
     warmup_epochs=1,
     warmup_bias_lr=0.0,
     lr0=0.00125,
-    lrf=0.500,
+    lrf=args.lrf,
     optimizer="MuSGD",
     momentum=0.9,
     weight_decay=0.0007,
